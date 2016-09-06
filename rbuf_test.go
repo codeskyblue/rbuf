@@ -139,7 +139,7 @@ func TestRingBufReadWrite(t *testing.T) {
 
 			n, err = b.WriteAndMaybeOverwriteOldestData(data[0:9])
 			cv.So(err, cv.ShouldEqual, nil)
-			cv.So(n, cv.ShouldEqual, 5) // Maybe should be 9, I don't know
+			cv.So(n, cv.ShouldEqual, 9)
 			cv.So(b.Bytes(), cv.ShouldResemble, data[4:9])
 		})
 

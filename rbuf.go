@@ -236,7 +236,11 @@ func (b *FixedSizeRingBuf) WriteAndMaybeOverwriteOldestData(p []byte) (n int, er
 	if len(p) > b.N {
 		startPos = len(p) - b.N
 	}
-	return b.Write(p[startPos:])
+	n, err = b.Write(p[startPos:])
+	if err != nil {
+		return n, err
+	}
+	return len(p), nil
 }
 
 // WriteTo and ReadFrom avoid intermediate allocation and copies.
